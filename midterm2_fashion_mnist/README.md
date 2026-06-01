@@ -7,7 +7,7 @@
 - Dataset атауы: Fashion-MNIST
 - Ашық дереккөз: Zalando Research / Kaggle
 - Нақты сілтемелер:
-  - Official GitHub: https://github.com/zalandoresearch/fashion-mnist
+
   - Kaggle: https://www.kaggle.com/datasets/zalando-research/fashionmnist
 - Көлемі: 60 000 training image және 10 000 test image
 - Форматы: 28x28 grayscale суреттер

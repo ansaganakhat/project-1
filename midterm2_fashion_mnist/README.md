@@ -10,6 +10,7 @@
   - Official GitHub: https://github.com/zalandoresearch/fashion-mnist
   - Kaggle: https://www.kaggle.com/datasets/zalando-research/fashionmnist
 - Жүктеу тәсілі: dataset `keras.datasets`, `sklearn.datasets` немесе `seaborn.load_dataset` арқылы алынбайды. Project official GitHub raw `.gz` файлдарын тікелей жүктеп, IDX форматынан өзі оқиды.
+- Ескерту: project ішінде `sklearn` және `seaborn` кітапханалары мүлде қолданылмайды.
 - Көлемі: 60 000 training image және 10 000 test image
 - Форматы: 28x28 grayscale суреттер
 - Кластар саны: 10
@@ -34,7 +35,8 @@
 | Талап | Осы жобадағы орындалуы |
 |---|---|
 | Ашық dataset және сілтеме | Fashion-MNIST, GitHub және Kaggle links |
-| Built-in dataset қолданбау | Dataset official GitHub raw files арқылы жүктеледі, `keras.datasets` қолданылмайды |
+| Built-in dataset қолданбау | Dataset official GitHub raw files арқылы жүктеледі, built-in dataset loader қолданылмайды |
+| `sklearn`, `seaborn` қолданбау | Project бұл кітапханаларсыз орындалады |
 | EDA | Class distribution, sample images, pixel intensity analysis |
 | Алдын ала өңдеу | Normalization, reshaping for MLP/CNN, train/validation split |
 | Кемінде 2 neural network | MLP және CNN |
@@ -94,8 +96,8 @@ Notebook 3 epoch арқылы орындалды. Нәтиже random seed жә�
 
 | Model | Test accuracy | Test loss | Parameters |
 |---|---:|---:|---:|
-| CNN | 0.8970 | 0.2814 | 421 642 |
-| MLP | 0.8643 | 0.3769 | 235 146 |
+| CNN | 0.8925 | 0.2998 | 421 642 |
+| MLP | 0.8629 | 0.3805 | 235 146 |
 
 Осы нәтижеде CNN ең жақсы модель болды.
 

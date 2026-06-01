@@ -1,14 +1,14 @@
 [
   {
     "model": "mlp",
-    "test_loss": 0.37688401341438293,
-    "test_accuracy": 0.864300012588501,
+    "test_loss": 0.38052335381507874,
+    "test_accuracy": 0.8629000186920166,
     "parameters": 235146
   },
   {
     "model": "cnn",
-    "test_loss": 0.2813946306705475,
-    "test_accuracy": 0.8970000147819519,
+    "test_loss": 0.2998060882091522,
+    "test_accuracy": 0.8924999833106995,
     "parameters": 421642
   }
 ]

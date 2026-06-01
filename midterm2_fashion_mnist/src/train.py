@@ -14,10 +14,7 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-import seaborn as sns
 import tensorflow as tf
-from sklearn.metrics import classification_report, confusion_matrix
-from sklearn.model_selection import train_test_split
 from tensorflow import keras
 from tensorflow.keras import layers
 
@@ -109,6 +106,82 @@ def load_dataset(data_dir: Path) -> tuple[np.ndarray, np.ndarray, np.ndarray, np
     return x_train, y_train, x_test, y_test
 
 
+def stratified_train_val_split(
+    x: np.ndarray,
+    y: np.ndarray,
+    test_size: float,
+    seed: int,
+) -> tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray]:
+    rng = np.random.default_rng(seed)
+    train_indices = []
+    val_indices = []
+
+    for class_id in np.unique(y):
+        class_indices = np.where(y == class_id)[0]
+        rng.shuffle(class_indices)
+        val_count = int(round(len(class_indices) * test_size))
+        val_indices.extend(class_indices[:val_count])
+        train_indices.extend(class_indices[val_count:])
+
+    train_indices = np.array(train_indices)
+    val_indices = np.array(val_indices)
+    rng.shuffle(train_indices)
+    rng.shuffle(val_indices)
+
+    return x[train_indices], x[val_indices], y[train_indices], y[val_indices]
+
+
+def make_confusion_matrix(y_true: np.ndarray, y_pred: np.ndarray, num_classes: int) -> np.ndarray:
+    matrix = np.zeros((num_classes, num_classes), dtype=np.int64)
+    for true_label, predicted_label in zip(y_true, y_pred):
+        matrix[int(true_label), int(predicted_label)] += 1
+    return matrix
+
+
+def make_classification_report(y_true: np.ndarray, y_pred: np.ndarray) -> pd.DataFrame:
+    matrix = make_confusion_matrix(y_true, y_pred, len(CLASS_NAMES))
+    rows = []
+
+    for class_id, class_name in enumerate(CLASS_NAMES):
+        tp = matrix[class_id, class_id]
+        fp = matrix[:, class_id].sum() - tp
+        fn = matrix[class_id, :].sum() - tp
+        support = matrix[class_id, :].sum()
+
+        precision = tp / (tp + fp) if (tp + fp) else 0.0
+        recall = tp / (tp + fn) if (tp + fn) else 0.0
+        f1 = 2 * precision * recall / (precision + recall) if (precision + recall) else 0.0
+
+        rows.append(
+            {
+                "class": class_name,
+                "precision": precision,
+                "recall": recall,
+                "f1-score": f1,
+                "support": support,
+            }
+        )
+
+    report = pd.DataFrame(rows).set_index("class")
+    accuracy = np.trace(matrix) / matrix.sum()
+    macro_avg = report[["precision", "recall", "f1-score"]].mean()
+    weighted_avg = (
+        report[["precision", "recall", "f1-score"]]
+        .multiply(report["support"], axis=0)
+        .sum()
+        / report["support"].sum()
+    )
+
+    report.loc["accuracy", ["precision", "recall", "f1-score"]] = accuracy
+    report.loc["accuracy", "support"] = report.loc[CLASS_NAMES, "support"].sum()
+    report.loc["macro avg", ["precision", "recall", "f1-score"]] = macro_avg
+    report.loc["macro avg", "support"] = report.loc[CLASS_NAMES, "support"].sum()
+    report.loc["weighted avg", ["precision", "recall", "f1-score"]] = weighted_avg
+    report.loc["weighted avg", "support"] = report.loc[CLASS_NAMES, "support"].sum()
+
+    return report
+
+
 def save_eda_plots(
     x_train: np.ndarray,
     y_train: np.ndarray,
@@ -124,7 +197,7 @@ def save_eda_plots(
     )
 
     plt.figure(figsize=(10, 5))
-    sns.barplot(data=class_df, x="class_name", y="count", hue="class_name", palette="viridis", legend=False)
+    plt.bar(class_df["class_name"], class_df["count"], color="#2a9d8f")
     plt.title("Fashion-MNIST class distribution")
     plt.xlabel("Class")
     plt.ylabel("Count")
@@ -164,12 +237,11 @@ def preprocess(
     x_train_norm = x_train.astype("float32") / 255.0
     x_test_norm = x_test.astype("float32") / 255.0
 
-    x_train_part, x_val_part, y_train_part, y_val_part = train_test_split(
+    x_train_part, x_val_part, y_train_part, y_val_part = stratified_train_val_split(
         x_train_norm,
         y_train,
         test_size=0.1,
-        random_state=seed,
-        stratify=y_train,
+        seed=seed,
     )
 
     return {
@@ -259,14 +331,8 @@ def train_and_evaluate(
     test_loss, test_accuracy = model.evaluate(x_test, y_test, verbose=0)
     y_pred = np.argmax(model.predict(x_test, verbose=0), axis=1)
 
-    report = classification_report(
-        y_test,
-        y_pred,
-        target_names=CLASS_NAMES,
-        output_dict=True,
-        zero_division=0,
-    )
-    pd.DataFrame(report).transpose().to_csv(paths["results"] / f"{model_name}_classification_report.csv")
+    report = make_classification_report(y_test, y_pred)
+    report.to_csv(paths["results"] / f"{model_name}_classification_report.csv")
     model.save(paths["models"] / f"{model_name}.keras")
 
     return (
@@ -314,21 +380,21 @@ def plot_confusion_matrix(
     title: str,
     output_path: Path,
 ) -> None:
-    matrix = confusion_matrix(y_true, y_pred)
+    matrix = make_confusion_matrix(y_true, y_pred, len(CLASS_NAMES))
     plt.figure(figsize=(9, 7))
-    sns.heatmap(
-        matrix,
-        annot=True,
-        fmt="d",
-        cmap="Blues",
-        xticklabels=CLASS_NAMES,
-        yticklabels=CLASS_NAMES,
-    )
+    plt.imshow(matrix, interpolation="nearest", cmap="Blues")
+    plt.colorbar(fraction=0.046, pad=0.04)
+    tick_marks = np.arange(len(CLASS_NAMES))
+    plt.xticks(tick_marks, CLASS_NAMES, rotation=35, ha="right")
+    plt.yticks(tick_marks, CLASS_NAMES)
+    threshold = matrix.max() / 2
+    for row in range(matrix.shape[0]):
+        for col in range(matrix.shape[1]):
+            color = "white" if matrix[row, col] > threshold else "black"
+            plt.text(col, row, str(matrix[row, col]), ha="center", va="center", color=color, fontsize=8)
     plt.title(title)
     plt.xlabel("Predicted label")
     plt.ylabel("True label")
-    plt.xticks(rotation=35, ha="right")
-    plt.yticks(rotation=0)
     plt.tight_layout()
     plt.savefig(output_path, dpi=160)
     plt.close()

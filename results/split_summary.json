@@ -1,0 +1,17 @@
+{
+  "train_size": 3610,
+  "validation_size": 774,
+  "test_size": 774,
+  "train_class_distribution": {
+    "0": 3161,
+    "1": 449
+  },
+  "validation_class_distribution": {
+    "0": 677,
+    "1": 97
+  },
+  "test_class_distribution": {
+    "0": 678,
+    "1": 96
+  }
+}

@@ -1,0 +1,93 @@
+{
+  "eda_summary": {
+    "raw_rows": 5572,
+    "clean_rows": 5158,
+    "duplicates_removed": 414,
+    "columns": [
+      "label",
+      "message"
+    ],
+    "missing_values_raw": {
+      "label": 0,
+      "message": 0
+    },
+    "class_distribution_clean": {
+      "ham": 4516,
+      "spam": 642
+    },
+    "class_distribution_percent_clean": {
+      "ham": 87.55,
+      "spam": 12.45
+    },
+    "message_length": {
+      "mean": 79.19794493989919,
+      "median": 61.0,
+      "min": 2,
+      "max": 910
+    },
+    "word_count": {
+      "mean": 15.41721597518418,
+      "median": 12.0,
+      "min": 1,
+      "max": 171
+    }
+  },
+  "split_summary": {
+    "train_size": 3610,
+    "validation_size": 774,
+    "test_size": 774,
+    "train_class_distribution": {
+      "0": 3161,
+      "1": 449
+    },
+    "validation_class_distribution": {
+      "0": 677,
+      "1": 97
+    },
+    "test_class_distribution": {
+      "0": 678,
+      "1": 96
+    }
+  },
+  "models": [
+    {
+      "model": "mlp_tfidf",
+      "accuracy": 0.9832041343669251,
+      "precision": 0.9368421052631579,
+      "recall": 0.9270833333333334,
+      "f1_score": 0.9319371727748691,
+      "threshold": 0.37000000000000016,
+      "test_loss": 0.05164114385843277,
+      "confusion_matrix": [
+        [
+          672,
+          6
+        ],
+        [
+          7,
+          89
+        ]
+      ]
+    },
+    {
+      "model": "bilstm",
+      "accuracy": 0.9767441860465116,
+      "precision": 0.9534883720930233,
+      "recall": 0.8541666666666666,
+      "f1_score": 0.9010989010989011,
+      "threshold": 0.2800000000000001,
+      "test_loss": 0.08124590665102005,
+      "confusion_matrix": [
+        [
+          674,
+          4
+        ],
+        [
+          14,
+          82
+        ]
+      ]
+    }
+  ],
+  "best_model_by_f1": "mlp_tfidf"
+}

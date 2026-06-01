@@ -1,0 +1,33 @@
+{
+  "raw_rows": 5572,
+  "clean_rows": 5158,
+  "duplicates_removed": 414,
+  "columns": [
+    "label",
+    "message"
+  ],
+  "missing_values_raw": {
+    "label": 0,
+    "message": 0
+  },
+  "class_distribution_clean": {
+    "ham": 4516,
+    "spam": 642
+  },
+  "class_distribution_percent_clean": {
+    "ham": 87.55,
+    "spam": 12.45
+  },
+  "message_length": {
+    "mean": 79.19794493989919,
+    "median": 61.0,
+    "min": 2,
+    "max": 910
+  },
+  "word_count": {
+    "mean": 15.41721597518418,
+    "median": 12.0,
+    "min": 1,
+    "max": 171
+  }
+}

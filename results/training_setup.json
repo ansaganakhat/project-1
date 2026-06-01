@@ -1,0 +1,11 @@
+{
+  "computed_class_weights": {
+    "0": 0.5710218285352736,
+    "1": 4.020044543429844
+  },
+  "used_class_weights": false,
+  "vocabulary_size": 7740,
+  "tfidf_feature_count": 5000,
+  "vectorizer_vocabulary_path": "C:\\Users\\Admin\\Documents\\Codex\\2026-06-01\\midterm-2-deep-learning-project-requirements\\outputs\\project-1\\models\\text_vectorizer_vocabulary.json",
+  "tfidf_vectorizer_path": "C:\\Users\\Admin\\Documents\\Codex\\2026-06-01\\midterm-2-deep-learning-project-requirements\\outputs\\project-1\\models\\tfidf_vectorizer.joblib"
+}

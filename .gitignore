@@ -5,5 +5,5 @@ __pycache__/
 venv/
 env/
 
-# Large generated artifacts can be reproduced with python src/train.py
-data/raw/*.zip
+# Large downloaded archives can be reproduced with python src/train.py
+**/data/raw/*.zip

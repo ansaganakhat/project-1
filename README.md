@@ -1,8 +1,11 @@
-# Project 1
+# Titanic жобасы
 
-Midterm 2 Deep Learning жобасы бөлек папкаға көшірілді:
+Студентке арналған машиналық оқыту практикумы. Толық нұсқаулық: `nusqaulyq.pdf`.
 
-👉 [midterm2](./midterm2)
+## Қадамдар
 
-Негізгі notebook: [midterm2/notebooks/midterm2_sms_spam_deep_learning_kz.ipynb](./midterm2/notebooks/midterm2_sms_spam_deep_learning_kz.ipynb)
-
+1. Жобаны клондаңыз: `git clone https://github.com/Yerassyl04/titanic-submission-kz`
+2. `titanic_tapsyrma.ipynb` дәптерін ашып, бос орындарды толтырыңыз.
+3. Дәптерді іске қосып, `submission.csv` файлын жасаңыз.
+4. Файлды Kaggle жарысына жіберіңіз: `https://www.kaggle.com/competitions/titanic`
+5. Leaderboard бетінен өз ұпайыңызды тексеріңіз.

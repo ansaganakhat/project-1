@@ -1,0 +1,5 @@
+train: C:\Users\Ww\Documents\Ansagan\dataset\images
+val: C:\Users\Ww\Documents\Ansagan\dataset\images
+
+nc: 20  
+names: ['person', 'velo', 'basty', 'belgisiz', 'car', 'belgi1', 'belgi2', 'belgi3','belgi4','belgi5','belgi6', 'belgi7', 'belgi8','belgi9','belgi10','belgi11', 'belgi12', 'belgi13','belgi14','belgi15']  # названия классов

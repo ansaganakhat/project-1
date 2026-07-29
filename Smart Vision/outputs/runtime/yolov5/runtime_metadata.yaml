@@ -1,0 +1,8 @@
+model: yolov5
+source_class_yaml: C:/Users/Ansagan/Documents/Project/yolov5/data.yaml
+dataset_root: C:/Users/Ansagan/Documents/Project/dataset
+images_root: C:/Users/Ansagan/Documents/Project/dataset/images
+mode: deterministic_80_20_lists
+source: C:\Users\Ansagan\Documents\Project\dataset\images
+train_images: 736
+val_images: 184

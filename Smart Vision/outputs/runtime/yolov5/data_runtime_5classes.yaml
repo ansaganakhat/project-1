@@ -1,0 +1,10 @@
+train: C:/Users/Ansagan/Downloads/smart_vision_final_project_laptop_cpu/outputs/runtime/yolov5/lists/train.txt
+val: C:/Users/Ansagan/Downloads/smart_vision_final_project_laptop_cpu/outputs/runtime/yolov5/lists/val.txt
+test: C:/Users/Ansagan/Downloads/smart_vision_final_project_laptop_cpu/outputs/runtime/yolov5/lists/val.txt
+nc: 5
+names:
+- person
+- velo
+- basty
+- belgisiz
+- car

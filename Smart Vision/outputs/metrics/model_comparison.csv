@@ -1,0 +1,4 @@
+model,task,dataset,class_count,accuracy,f1_macro,precision,recall,map50,map50_95,inference_ms,fps,model_size_mb,best_params
+HOG + SVM,object crop classification,C:\Users\Ansagan\Downloads\smart_vision_final_project_laptop_cpu\outputs\runtime\yolov10\data_runtime.yaml,20.0,0.945273631840796,0.9465092262809656,,,,,,,,{'svc__C': 0.01}
+YOLOv5,object detection,C:\Users\Ansagan\Downloads\smart_vision_final_project_laptop_cpu\outputs\runtime\yolov5\data_runtime_5classes.yaml,,,,0.976,0.97,0.99,0.874,,,40.301,
+YOLOv10,object detection,C:\Users\Ansagan\Downloads\smart_vision_final_project_laptop_cpu\outputs\runtime\yolov10\data_runtime.yaml,20.0,,,0.9809211789400889,0.9849954910513443,0.9920916309042539,0.9409458877577683,6600.16775170221,0.15151130056385248,61.206,

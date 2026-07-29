@@ -1,0 +1,25 @@
+train: C:/Users/Ansagan/Documents/Ansagan/Ansagan/dataset/images/train
+val: C:/Users/Ansagan/Documents/Ansagan/Ansagan/dataset/images/val
+test: C:/Users/Ansagan/Documents/Ansagan/Ansagan/dataset/images/val
+nc: 20
+names:
+- person
+- velo
+- basty
+- belgisiz
+- car
+- belgi1
+- belgi2
+- belgi3
+- belgi4
+- belgi5
+- belgi6
+- belgi7
+- belgi8
+- belgi9
+- belgi10
+- belgi11
+- belgi12
+- belgi13
+- belgi14
+- belgi15

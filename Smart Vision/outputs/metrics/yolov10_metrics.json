@@ -1,0 +1,19 @@
+{
+  "weights": "C:\\Users\\Ansagan\\Documents\\Ansagan\\Ansagan\\yolov10\\runs\\detect\\runs\\runs\\detect\\yolov10x_custom\\weights\\best.pt",
+  "data_yaml": "C:\\Users\\Ansagan\\Downloads\\smart_vision_final_project_laptop_cpu\\outputs\\runtime\\yolov10\\data_runtime.yaml",
+  "imgsz": 640,
+  "conf": 0.001,
+  "eval_seconds": 6272.378386299824,
+  "model_size_mb": 61.206,
+  "parameter_count": 29415788,
+  "class_count": 20,
+  "precision_mean": 0.9809211789400889,
+  "recall_mean": 0.9849954910513443,
+  "map50": 0.9920916309042539,
+  "map50_95": 0.9409458877577683,
+  "preprocess_ms": 11.629643389083414,
+  "inference_ms": 6600.16775170221,
+  "postprocess_ms": 14.635144458609078,
+  "fps_estimate": 0.15151130056385248,
+  "save_dir": "C:\\Users\\Ansagan\\Downloads\\smart_vision_final_project_laptop_cpu\\runs\\detect\\val"
+}

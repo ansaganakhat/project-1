@@ -1,0 +1,7 @@
+model: yolov10
+source_class_yaml: C:/Users/Ansagan/Documents/Ansagan/Ansagan/yolov10/data.yaml
+dataset_root: C:/Users/Ansagan/Documents/Ansagan/Ansagan/dataset
+images_root: C:/Users/Ansagan/Documents/Ansagan/Ansagan/dataset/images
+mode: directories
+train_images: 3752
+val_images: 938
